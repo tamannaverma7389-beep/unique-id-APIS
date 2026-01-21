@@ -1,3 +1,4 @@
+require('dotenv').config(); 
 const express = require("express");
 const {connectMongoDb} = require("./connection");
 
@@ -12,6 +13,7 @@ const PORT = 8000;
 connectMongoDb('mongodb://127.0.0.1:27017/youtube-app-2').then(() => 
     console.log("Mongodb connected!")
 );
+console.log("test", process.env.MONGO_URL);
 //middleware-plugin
 app.use(express.urlencoded({ extended : false}));
 app.use(logReqRes("log.txt"));
