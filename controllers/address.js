@@ -1,26 +1,26 @@
 const Address = require('../models/Address');
 
-async function handleGetAllAddress(req ,res) {
-    const allDbAddress =  await Address.find({});
+async function addressDetails(req ,res) {
+    const allDbAddress =  await Address.findById({});
       return res.json(allDbAddress);
 
 }
-async function handleGetAddressById(req,res) {
-    const Address = await Address.findById(req.params.id);
+async function addressList(req,res) {
+    const address = await Address.findById(req.params.id);
     if(!Addressr) return res.status(404).json({error: "address not found"});
      return res.json(Address);
  }
 
-async function handleUpdateAddressById(req, res) {
+async function  editAddress(req, res) {
     await Address.findByIdAndUpdate(req.params.id , req.body, { new: true });
     return res.json({status: 'success'})
 }
-async function handleDeleteAddressById(req, res) {
+async function deleteAddress(req, res) {
     await Address.findByIdAndDelete(req.params.id);
     return res.json({status: 'success'})
 }
 
-async function handleCreateNewAddress(req, res) {
+async function createAddress(req, res) {
     const body = req.body;
     if (
         !body.user ||
@@ -44,9 +44,9 @@ async function handleCreateNewAddress(req, res) {
     return res.status(201).json({ msg : "success", id:result._id});
 };
 module.exports = {
-    handleGetAllAddress,
-    handleGetAddressById,
-    handleUpdateAddressById,
-    handleDeleteAddressById,
-    handleCreateNewAddress,
+    createAddress,
+    addressList,
+    addressDetails,
+    deleteAddress,
+    editAddress,
 }
