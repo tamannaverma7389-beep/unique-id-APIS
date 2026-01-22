@@ -5,6 +5,7 @@ const {connectMongoDb} = require("./connection");
 const{logReqRes} = require("./middleware");
 
 const userRouter = require('./routes/user');
+const addressRouter = require('./routes/address');
 
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(logReqRes("log.txt"));
 
 //routes~
 app.use("/api/users" , userRouter);
+app.use("/api/address" , addressRouter);
 
 
 //port
