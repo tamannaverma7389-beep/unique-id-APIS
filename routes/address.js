@@ -1,12 +1,14 @@
+const express = require('express');
+const router = express.Router();
+const {createAddress, addressList, addressDetails, deleteAddress, editAddress} = require('../controllers/Address');
 
-const {createAddress, addressList, addressDetails, deleteAddress, editAddress} = require('./controllers/address');
 
 
-
-route.post("/address/create", createAddress);
-route.get("/address/list/:userId", addressList);
-route.get("/address/details/:userId/:id", addressDetails);
-route.delete("/address/delete/:userId/:id", deleteAddress);
-route.put("/address/edit/:userId/:id", editAddress);
+router.post("/create", createAddress);
+router.get("/list/:userId", addressList);
+router.get("/details/:userId/:id", addressDetails);
+router.delete("/delete/:userId/:id", deleteAddress);
+router.put("/edit/:userId/:id", editAddress);
 
 module.exports = router;
+

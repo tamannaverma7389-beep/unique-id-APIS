@@ -1,5 +1,4 @@
-
-const User = require('../models/user');
+const User = require('../models/User');
 
 async function userList(req ,res) {
     const allDbUsers =  await User.find({});
@@ -7,9 +6,9 @@ async function userList(req ,res) {
 
 }
 async function userDetails(req,res) {
-    const user = await User.findById(req.params.id);
-    if(!user) return res.status(404).json({error: "user not found"});
-     return res.json(user);
+    const User = await User.findById(req.params.id);
+    if(!User) return res.status(404).json({error: "user not found"});
+     return res.json(User);
  }
 
 async function editUser(req, res) {
