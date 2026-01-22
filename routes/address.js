@@ -10,5 +10,5 @@ router.get("/details/:userId/:id", addressDetails);
 router.delete("/delete/:userId/:id", deleteAddress);
 router.put("/edit/:userId/:id", editAddress);
 
-module.exports = router;
+ module.exports = router;
 

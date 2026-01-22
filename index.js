@@ -8,7 +8,7 @@ const routes = require('./routes');
 
 
 const app = express();
-const PORT = 8001;
+const PORT = 8000;
 
 //connection
 
@@ -17,14 +17,23 @@ connectMongoDb();
 //     console.log("Mongodb connected!")
 // );
 console.log("test", process.env.MONGO_URL);
-//middleware-plugin
 
+//middleware-plugin
+app.use(express.json());
 app.use(express.urlencoded({ extended : false}));
 app.use(logReqRes("log.txt"));
 
+// app.get("/test", (req,res)=>{
+//     res.send("api working");
+// }); for router test
 //routes~
 app.use("/api" , routes);
-console.log("everything is good");
+
 
 //port
-app.listen(PORT, () => console.log(`server started at PORT:${PORT}`));
+app.listen(PORT, () => console.log(`server started at PORT:${PORT}`))
+
+process.on("uncaughtException", err => {
+  console.error("UNCAUGHT:", err);
+});
+

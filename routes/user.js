@@ -4,11 +4,15 @@ const router = express.Router();
 const {userList, userDetails, deleteUser, editUser, createNewUser} = require('../controllers/User');
 
 
-
-router.post("/create", createNewUser);
 router.get("/list", userList);
 router.get("/details/:id", userDetails);
-router.delete("/delete/:id", deleteUser);
+router.post("/create", createNewUser);
 router.put("/edit/:id", editUser);
+router.delete("/delete/:id", deleteUser);
 
 module.exports = router;
+
+// router.get("/ping", (req, res) => {
+//   res.send("USER ROUTER WORKING");
+// });  user router working
+

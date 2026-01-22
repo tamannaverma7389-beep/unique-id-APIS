@@ -1,22 +1,23 @@
-const Address = require('../models/Address');
+const Address = require('../models/address.js');
 
 async function addressDetails(req ,res) {
-    const allDbAddress =  await Address.findById({});
-      return res.json(allDbAddress);
+    const address =  await Address.find({});
+      return res.json(address);
 
 }
 async function addressList(req,res) {
-    const Address = await Address.findById(req.params.id);
-    if(!Addressr) return res.status(404).json({error: "address not found"});
-     return res.json(Address);
+    const address = await Address.findById(req.params.id);
+    if(!addressr) return res.status(404).json({error: "address not found"});
+     return res.json(address);
  }
 
 async function  editAddress(req, res) {
-    await Address.findByIdAndUpdate(req.params.id , req.body, { new: true });
+    const updateAddress = await Address.findByIdAndUpdate(req.params.id , req.body, { new: true });
     return res.json({status: 'success'})
 }
+
 async function deleteAddress(req, res) {
-    await Address.findByIdAndDelete(req.params.id);
+    const deleteAddress = await Address.findByIdAndDelete(req.params.id);
     return res.json({status: 'success'})
 }
 
@@ -49,4 +50,4 @@ module.exports = {
     addressDetails,
     deleteAddress,
     editAddress,
-}
+};
