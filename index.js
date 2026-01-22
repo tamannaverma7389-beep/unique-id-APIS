@@ -4,13 +4,14 @@ const {connectMongoDb} = require("./connection");
 
 const{logReqRes} = require("./middleware");
 
-const addressRouter = require('./routes/Address');
+const userRouter = require('./routes/user');
+
 
 const app = express();
 const PORT = 8000;
 
 //connection
-connectMongoDb('mongodb://127.0.0.1:27017/youtube-app-2').then(() => 
+connectMongoDb('mongodb://127.0.0.1:27017/youtube-app-3').then(() => 
     console.log("Mongodb connected!")
 );
 console.log("test", process.env.MONGO_URL);
@@ -18,8 +19,9 @@ console.log("test", process.env.MONGO_URL);
 app.use(express.urlencoded({ extended : false}));
 app.use(logReqRes("log.txt"));
 
-//routes
-app.use("/api/address" , addressRouter);
+//routes~
+app.use("/api/users" , userRouter);
+
 
 //port
 app.listen(PORT, () => console.log(`server started at PORT:${PORT}`));
