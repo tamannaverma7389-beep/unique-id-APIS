@@ -11,4 +11,6 @@ async function connectMongoDb() {
   }
 }
 
-module.exports = { connectMongoDb };
+module.exports = { 
+  connectMongoDb,
+ };

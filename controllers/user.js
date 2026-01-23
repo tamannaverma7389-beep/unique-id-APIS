@@ -1,41 +1,38 @@
-const User = require('../models/User.js');
-
-async function userList(req ,res) {
-    const user =  await User.find({user});
-      return res.json(user);
-}
-async function userDetails(req,res) {
-    const user = await user.findById(req.params.id);
-    if(!user) return res.status(404).json({error: "user not found"});
-     return res.json(user);
- }
-
-async function editUser(req, res) {
-    const user = await user.findByIdAndUpdate(req.params.id , req.body, { new: true } );
-    return res.json({status: 'success'});
-}
-async function deleteUser(req, res) {
-    const user = await user.findByIdAndDelete(req.params.id);
-    return res.json({status: 'success'});
-}
-
-
+const User = require('../models/user');
 
 async function createNewUser(req, res) {
     const body = req.body;
     if (
         !body ||
-        !body.user_name ||
-        !body.user_email 
-            )  {
+        !body.name ||
+        !body.email
+        )  {
         return res.status(400).json({msg : "All fields are req..."});
     };
     const result = await User.create({
-      name : body.user_name,
-      email: body.user_email,
+      name : body.name,
+      email: body.email,
     });
     // console.log("result" , result);
     return res.status(201).json({ msg : "success", id:result._id});
+};
+async function userDetails(req ,res) {
+    const allDbUser =  await User.findById(req.params.id);
+      return res.json(allDbUser);
+};
+async function userList(req,res) {
+    const Users = await User.find();
+    if(!User) return res.status(404).json({error: "user not found"});
+     return res.json(Users);
+};
+
+async function editUser(req, res) {
+    const Users = await User.findByIdAndUpdate(req.params.id , req.body, { new: true });
+    return res.json({status: 'success'});
+};
+async function deleteUser(req, res) {
+    const Users = await User.findByIdAndDelete(req.params.id);
+    return res.json({status: 'success'});
 };
 
 module.exports = {

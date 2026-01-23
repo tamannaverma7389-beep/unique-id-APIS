@@ -33,7 +33,7 @@ app.use("/api" , routes);
 //port
 app.listen(PORT, () => console.log(`server started at PORT:${PORT}`))
 
-process.on("uncaughtException", err => {
-  console.error("UNCAUGHT:", err);
-});
+// process.on("uncaughtException", err => {
+//   console.error("UNCAUGHT:", err);
+// });
 
