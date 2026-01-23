@@ -30,7 +30,7 @@ async function addressDetails(req, res) {
 
 };
 async function addressList(req,res) {
-    const address = await Address.find();
+    const address = await Address.find({userId: req.params.userId});
     if(!address) return res.status(404).json({error: "address not found"});
      return res.json(address);
  };
